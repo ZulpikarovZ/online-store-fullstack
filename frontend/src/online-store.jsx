@@ -8,7 +8,8 @@ const AppContainer = styled.div`
 	justify-content: space-between;
 	position: relative;
 	min-height: 100%;
-	width: 1000px;
+	// width: 1480px;
+	width: 100%;
 	background-color: #fff;
 	margin: auto;
 `;
@@ -28,7 +29,10 @@ export const OnlineStore = () => {
 					<Route path="/register" element={<div>Регистрация</div>} />
 					<Route path="/product" element={<div>Добавление товара</div>} />
 					<Route path="/product/:id" element={<div>Карточка товара</div>} />
-					<Route path="/product/:id/edit" element={<div>Изменение товара</div>} />
+					<Route
+						path="/product/:id/edit"
+						element={<div>Изменение товара</div>}
+					/>
 					<Route path="/basket/:id" element={<div>Корзина</div>} />
 					<Route path="/favorites/:id" element={<div>Избранное</div>} />
 					<Route path="*" element={<div>Страница не найдена</div>} />
