@@ -5,19 +5,19 @@
 - Главная - /
 - Авторизация - /login
 - Регистрация - /register
-- Избранное - /favoirites/:id
+- Избранное - /favorites/:id
 - Корзина - /basket/:id
 - Страница для добавления товара - /product
 - Карточка товара - /product/:id
 - Страница для изменения товара - /product/:id/edit
-- ЛК
+- ЛК - /profile
 
 ## Сущности:
 
 Таблицы БД:
 пользователи - users: id / login / password / role_id / avatarUrl / registered_at
 роли - roles: id / name
-товары - products: id / image / name / price / quantity
+товары - products: id / image / name / description / categoryId / price / quantity / comments: массив commentId
 категории - categories: id / name
 отзывы - comments: id / user_id / product_id / content / published_at
 избранное - favorites: id / user_id
@@ -27,7 +27,7 @@
 
 Схема для Redux Store:
 user: id / login / roleId / avatarUrl / favorites: массив product / basket: массив product
-product: id / imageUrl / name / categoryId / price / quantity / favorite(bool) / comments: массив comment: id / userId / content / publishedAt
+product: id / imageUrl / name / description / categoryId / price / quantity / favorite(bool) / comments: массив comment: id / userId / content / publishedAt
 products: массив product
 
 ---

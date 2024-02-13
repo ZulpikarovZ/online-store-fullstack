@@ -135,10 +135,6 @@ export const Registration = styled(RegistrationContainer)`
 	flex-direction: column;
 	align-items: center;
 
-	& h2 {
-		font-weight: 500;
-	}
-
 	& form {
 		display: flex;
 		flex-direction: column;

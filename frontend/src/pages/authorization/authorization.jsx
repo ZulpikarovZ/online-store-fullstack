@@ -102,10 +102,6 @@ export const Authorization = styled(AuthorizationContainer)`
 	flex-direction: column;
 	align-items: center;
 
-	& h2 {
-		font-weight: 500;
-	}
-
 	& form {
 		display: flex;
 		flex-direction: column;

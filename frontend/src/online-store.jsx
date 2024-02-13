@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 import { Route, Routes } from 'react-router-dom';
 import { Footer, Header, Modal } from './components';
-import { Registration } from './pages/registration/registration';
-import { Authorization } from './pages/authorization/authorization';
 import { useDispatch } from 'react-redux';
 import { useLayoutEffect } from 'react';
 import { setUser } from './redux/actions';
+import { Authorization, Products, Profile, Registration } from './pages';
 
 const AppContainer = styled.div`
 	display: flex;
@@ -44,6 +43,8 @@ export const OnlineStore = () => {
 					<Route path="/" element={<div>Главная страница с товаром</div>} />
 					<Route path="/login" element={<Authorization />} />
 					<Route path="/register" element={<Registration />} />
+					<Route path="/profile" element={<Profile />} />
+					<Route path="/products" element={<Products />} />
 					<Route path="/product" element={<div>Добавление товара</div>} />
 					<Route path="/product/:id" element={<div>Карточка товара</div>} />
 					<Route

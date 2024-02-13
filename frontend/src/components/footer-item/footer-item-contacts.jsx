@@ -60,7 +60,7 @@ const FooterItemContactsContainer = ({ className }) => {
 
 export const FooterItemContacts = styled(FooterItemContactsContainer)`
 	width: 25%;
-	padding: 40px;
+	padding: 40px 30px 40px 40px;
 
 	& .contacts {
 		margin-bottom: 40px;

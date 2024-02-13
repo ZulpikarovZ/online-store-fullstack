@@ -4,6 +4,7 @@ import { ROLE } from '../../constants';
 const userInitialState = {
 	id: null,
 	login: null,
+	email: null,
 	roleId: ROLE.GUEST,
 };
 

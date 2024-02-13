@@ -24,11 +24,15 @@ const UserPanelContainer = ({ className }) => {
 				</Link>
 			) : (
 				<div className="login-container">
-					<span className="login">{user.login}</span>
+					<Link to="/profile">
+						<span className="login" title="profile">
+							{user.login}
+						</span>
+					</Link>
 					<Icon
 						className="logout"
 						id="fa-sign-out"
-						margin="0 0 0 10px"
+						margin="0 0 0 20px"
 						onClick={onLogout}
 						size="30px"
 						title="logout"
@@ -57,8 +61,7 @@ export const UserPanel = styled(UserPanelContainer)`
 
 		&:hover {
 			& div,
-			& span,
-			& .logout {
+			& span {
 				color: #4e7df1;
 				transition: all 0.3s ease-out;
 			}
@@ -82,9 +85,13 @@ export const UserPanel = styled(UserPanelContainer)`
 	& .login {
 		font-weight: 500;
 		font-size: 24px;
+		outline: 1px solid gray;
+		border-radius: 5px;
+		padding: 5px;
 	}
 
-	& .logout:hover {
+	& .logout:hover,
+	& .login:hover {
 		color: #4e7df1;
 		transition: all 0.3s ease-out;
 	}

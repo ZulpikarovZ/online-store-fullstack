@@ -19,7 +19,7 @@ const FooterItemDescContainer = ({ className }) => {
 
 export const FooterItemDesc = styled(FooterItemDescContainer)`
 	width: 25%;
-	padding: 40px;
+	padding: 40px 40px 40px 30px;
 
 	& .description {
 		line-height: 1.8;
