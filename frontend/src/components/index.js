@@ -11,3 +11,5 @@ export * from './footer-item/footer-item-company';
 export * from './footer-item/footer-item-contacts';
 export * from './footer-item/footer-item-desc';
 export * from './footer-item/footer-item-profile';
+export * from './button/button';
+export * from './auth-form-error/auth-form-error';

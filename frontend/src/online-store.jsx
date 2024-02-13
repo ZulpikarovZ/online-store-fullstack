@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 import { Route, Routes } from 'react-router-dom';
 import { Footer, Header, Modal } from './components';
+import { Registration } from './pages/registration/registration';
+import { Authorization } from './pages/authorization/authorization';
+import { useDispatch } from 'react-redux';
+import { useLayoutEffect } from 'react';
+import { setUser } from './redux/actions';
 
 const AppContainer = styled.div`
 	display: flex;
@@ -15,18 +20,30 @@ const AppContainer = styled.div`
 `;
 
 const Page = styled.div`
-	padding: 120px 0 0 0;
+	// padding: 120px 0 0 0;
 `;
 
 export const OnlineStore = () => {
+	const dispatch = useDispatch();
+
+	useLayoutEffect(() => {
+		const currentUserData = JSON.parse(sessionStorage.getItem('userData'));
+
+		if (!currentUserData) {
+			return;
+		}
+
+		dispatch(setUser({ ...currentUserData, roleId: Number(currentUserData.roleId) }));
+	}, [dispatch]);
+
 	return (
 		<AppContainer>
 			<Header />
 			<Page>
 				<Routes>
 					<Route path="/" element={<div>Главная страница с товаром</div>} />
-					<Route path="/login" element={<div>Авторизация</div>} />
-					<Route path="/register" element={<div>Регистрация</div>} />
+					<Route path="/login" element={<Authorization />} />
+					<Route path="/register" element={<Registration />} />
 					<Route path="/product" element={<div>Добавление товара</div>} />
 					<Route path="/product/:id" element={<div>Карточка товара</div>} />
 					<Route
