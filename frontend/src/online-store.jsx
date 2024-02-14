@@ -4,7 +4,7 @@ import { Footer, Header, Modal } from './components';
 import { useDispatch } from 'react-redux';
 import { useLayoutEffect } from 'react';
 import { setUser } from './redux/actions';
-import { Authorization, Products, Profile, Registration } from './pages';
+import { Products, Authorization, Profile, Registration } from './pages';
 
 const AppContainer = styled.div`
 	display: flex;

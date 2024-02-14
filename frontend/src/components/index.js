@@ -13,3 +13,7 @@ export * from './footer-item/footer-item-desc';
 export * from './footer-item/footer-item-profile';
 export * from './button/button';
 export * from './auth-form-error/auth-form-error';
+export * from './add-category-form/add-category-form';
+export * from './add-product-form/add-product-form';
+export * from './products-table/products-table';
+export * from './category-option/category-option';
