@@ -17,9 +17,7 @@ export const Footer = styled(FooterContainer)`
 
 	& .wrap {
 		width: 1480px;
-		// height: 130px;
 		margin: 0 auto;
-		// padding: 40px 30px;
 
 		& .footer-copy {
 			font-size: 12px;

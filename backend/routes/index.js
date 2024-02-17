@@ -4,7 +4,7 @@ const router = express.Router({ mergeParams: true });
 
 router.use('/', require('./auth'));
 router.use('/', require('./category'));
-// router.use('/products', require('./product'));
+router.use('/', require('./products'));
 // router.use('/users', require('./user'));
 
 module.exports = router;

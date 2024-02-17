@@ -6,7 +6,7 @@ import {
 
 const userInitialState = [];
 
-export const categoryReducer = (state = userInitialState, action) => {
+export const categoriesReducer = (state = userInitialState, action) => {
 	switch (action.type) {
 		case SET_CATEGORY:
 			return [...state, action.payload];

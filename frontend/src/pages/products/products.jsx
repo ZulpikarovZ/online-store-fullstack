@@ -33,6 +33,7 @@ export const Products = styled(ProductsContainer)`
 
 	& .left-col {
 		width: 25%;
+		margin-right: 40px;
 	}
 
 	.right-col {

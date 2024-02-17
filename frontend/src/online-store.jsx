@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Route, Routes } from 'react-router-dom';
-import { Footer, Header, Modal } from './components';
+import { Footer, Header } from './components';
 import { useDispatch } from 'react-redux';
 import { useLayoutEffect } from 'react';
 import { setUser } from './redux/actions';
@@ -57,7 +57,6 @@ export const OnlineStore = () => {
 				</Routes>
 			</Page>
 			<Footer />
-			<Modal />
 		</AppContainer>
 	);
 };

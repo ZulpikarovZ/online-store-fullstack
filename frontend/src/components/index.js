@@ -17,3 +17,4 @@ export * from './add-category-form/add-category-form';
 export * from './add-product-form/add-product-form';
 export * from './products-table/products-table';
 export * from './category-option/category-option';
+export * from './product-item/product-item';

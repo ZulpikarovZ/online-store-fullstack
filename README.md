@@ -17,7 +17,7 @@
 Таблицы БД:
 пользователи - users: id / login / password / role_id / avatarUrl / registered_at
 роли - roles: id / name
-товары - products: id / image / name / description / categoryId / price / quantity / comments: массив commentId
+товары - products: id / imageUrl / name / description / categoryId / price / quantity / comments: массив commentId
 категории - categories: id / name
 отзывы - comments: id / user_id / product_id / content / published_at
 избранное - favorites: id / user_id
