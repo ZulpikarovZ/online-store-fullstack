@@ -4,7 +4,7 @@ import { Footer, Header } from './components';
 import { useDispatch } from 'react-redux';
 import { useLayoutEffect } from 'react';
 import { setUser } from './redux/actions';
-import { Products, Authorization, Profile, Registration } from './pages';
+import { Products, Authorization, Profile, Registration, Main } from './pages';
 
 const AppContainer = styled.div`
 	display: flex;
@@ -18,8 +18,10 @@ const AppContainer = styled.div`
 	margin: auto;
 `;
 
-const Page = styled.div`
-	// padding: 120px 0 0 0;
+const Page = styled.main`
+	width: 1480px;
+	margin: 0 auto;
+	padding: 30px 30px;
 `;
 
 export const OnlineStore = () => {
@@ -40,7 +42,7 @@ export const OnlineStore = () => {
 			<Header />
 			<Page>
 				<Routes>
-					<Route path="/" element={<div>Главная страница с товаром</div>} />
+					<Route path="/" element={<Main />} />
 					<Route path="/login" element={<Authorization />} />
 					<Route path="/register" element={<Registration />} />
 					<Route path="/profile" element={<Profile />} />

@@ -18,3 +18,6 @@ export * from './add-product-form/add-product-form';
 export * from './products-table/products-table';
 export * from './category-option/category-option';
 export * from './product-item/product-item';
+export * from './categories/categories';
+export * from './products-list/products-list';
+export * from './products-list-item/products-list-item';

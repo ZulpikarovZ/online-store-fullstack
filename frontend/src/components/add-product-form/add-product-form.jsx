@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Input } from '../input/input';
 import { Button } from '../button/button';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CategoryOption } from '../category-option/category-option';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductAsync, getCategoriesAsync } from '../../redux/actions';
@@ -12,6 +12,7 @@ const AddProductFormContainer = ({ className }) => {
 	const [newProduct, setNewProduct] = useState({ ...initState });
 	const dispatch = useDispatch();
 	const categories = useSelector(selectCategories);
+	const selectRef = useRef(null);
 
 	useEffect(() => {
 		dispatch(getCategoriesAsync());
@@ -28,6 +29,7 @@ const AddProductFormContainer = ({ className }) => {
 		if (fieldsAreFilled) {
 			dispatch(addProductAsync({ ...newProduct }));
 			setNewProduct({ ...initState });
+			selectRef.current.value = 'Выберите категорию';
 		} else {
 			alert('Заполните все поля формы.');
 		}
@@ -38,10 +40,11 @@ const AddProductFormContainer = ({ className }) => {
 			<div className="outline">
 				<div>Добавить товар:</div>
 				<select
+					ref={selectRef}
 					name="category"
 					onChange={({ target }) => {
 						const item = categories.find((el) => el.name === target.value);
-						setNewProduct({ ...newProduct, categoryId: item.id });
+						setNewProduct({ ...newProduct, categoryId: item?.id });
 					}}
 				>
 					<option>Выберите категорию</option>;

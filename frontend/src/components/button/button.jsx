@@ -17,9 +17,9 @@ export const Button = styled(ButtonContainer)`
 	border: 0;
 	border-radius: 5px;
 	color: #fff;
+	transition: all 0.2s ease-out;
 
 	&:hover {
 		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-		transition: all 0.2s ease-out;
 	}
 `;
