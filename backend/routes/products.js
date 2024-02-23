@@ -4,6 +4,7 @@ const {
 	getProducts,
 	updateProduct,
 	deleteProduct,
+	getProduct,
 } = require('../controllers/product');
 const mapProduct = require('../helpers/mapProduct');
 
@@ -29,6 +30,19 @@ router.get('/products', async (req, res) => {
 		res.send({
 			error: null,
 			data: products.map(mapProduct),
+		});
+	} catch (e) {
+		res.send({ error: e.message || 'Unknown error' });
+	}
+});
+
+router.get('/products/:id', async (req, res) => {
+	try {
+		const product = await getProduct(req.params.id);
+
+		res.send({
+			error: null,
+			data: mapProduct(product),
 		});
 	} catch (e) {
 		res.send({ error: e.message || 'Unknown error' });

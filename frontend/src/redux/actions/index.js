@@ -16,3 +16,4 @@ export * from './edit-product-async';
 export * from './edit-product';
 export * from './remove-product-async';
 export * from './remove-product';
+export * from './get-product-async';

@@ -53,6 +53,7 @@ export const ProductsListItem = styled(ProductsListItemContainer)`
 
 	& .image-wrap {
 		display: flex;
+		justify-content: center;
 		align-items: center;
 		width: 100%;
 		min-height: 244px;

@@ -16,6 +16,12 @@ const getProducts = async () => {
 	return products;
 };
 
+const getProduct = async (productId) => {
+	let product = await Product.findById(productId).populate('categoryId');
+
+	return product;
+};
+
 const updateProduct = async (productId, product) => {
 	const updatedProduct = await Product.findByIdAndUpdate(productId, product, {
 		returnDocument: 'after',
@@ -32,6 +38,7 @@ const deleteProduct = async (productId) => {
 module.exports = {
 	addProduct,
 	getProducts,
+	getProduct,
 	updateProduct,
 	deleteProduct,
 };
