@@ -5,8 +5,12 @@ const {
 	updateProduct,
 	deleteProduct,
 	getProduct,
+	addComment,
+	deleteComment,
 } = require('../controllers/product');
 const mapProduct = require('../helpers/mapProduct');
+const mapComment = require('../helpers/mapComment');
+const authenticated = require('../middlewares/authenticated');
 
 const router = express.Router({ mergeParams: true });
 
@@ -65,6 +69,29 @@ router.patch('/products/:id', async (req, res) => {
 router.delete('/products/:id', async (req, res) => {
 	try {
 		await deleteProduct(req.params.id);
+
+		res.send({ error: null });
+	} catch (e) {
+		res.send({ error: e.message || 'Unknown error' });
+	}
+});
+
+router.post('/products/:id/comments', authenticated, async (req, res) => {
+	try {
+		const newComment = await addComment(req.params.id, {
+			content: req.body.content,
+			author: req.user.id,
+		});
+
+		res.send({ error: null, data: mapComment(newComment) });
+	} catch (e) {
+		res.send({ error: e.message || 'Unknown error' });
+	}
+});
+
+router.delete('/products/:productId/comments/:commentId', async (req, res) => {
+	try {
+		await deleteComment(req.params.productId, req.params.commentId);
 
 		res.send({ error: null });
 	} catch (e) {

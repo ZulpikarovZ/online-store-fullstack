@@ -17,3 +17,5 @@ export * from './edit-product';
 export * from './remove-product-async';
 export * from './remove-product';
 export * from './get-product-async';
+export * from './add-comment-async';
+export * from './remove-comment-async';

@@ -7,10 +7,10 @@ const FooterItemProfileContainer = ({ className }) => {
 			<h3>ЛИЧНЫЙ КАБИНЕТ</h3>
 			<ul>
 				<li>
-					<Link to="#">Мой профиль</Link>
+					<Link to="/profile">Мой профиль</Link>
 				</li>
 				<li>
-					<Link to="#">Мои заказы</Link>
+					<Link to="/basket">Мои заказы</Link>
 				</li>
 				<li>
 					<Link to="#">Мои подписки</Link>

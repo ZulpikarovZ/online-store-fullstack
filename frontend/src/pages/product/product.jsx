@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { getProductAsync } from '../../redux/actions';
-import { Button, Icon } from '../../components';
+import { Button, Comments, Icon } from '../../components';
 
 const ProductContainer = ({ className }) => {
 	const [product, setProduct] = useState({});
@@ -33,6 +33,12 @@ const ProductContainer = ({ className }) => {
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
 					eiusmod tempor incididunt ut labore et dolore magna aliqua. In vitae
 					turpis massa sed elementum tempus egestas sed.
+					<br />
+					<br />
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+					eiusmod tempor incididunt ut labore et dolore magna aliqua. Volutpat
+					consequat mauris nunc congue nisi vitae suscipit tellus. Adipiscing
+					elit pellentesque habitant morbi tristique.
 				</div>
 				<div className="buy">
 					<span className={quantityColor === 'green' ? 'green' : 'red'}>
@@ -54,7 +60,7 @@ const ProductContainer = ({ className }) => {
 					<Button disabled={quantityColor === 'red'}>В корзину</Button>
 				</div>
 			</div>
-			<h2>Отзывы</h2>
+			<Comments product={product} setProduct={setProduct} />
 		</div>
 	);
 };
@@ -62,11 +68,24 @@ const ProductContainer = ({ className }) => {
 export const Product = styled(ProductContainer)`
 	width: 1480px;
 
+	& h2 {
+		text-align: center;
+	}
+
 	& .product-row {
 		display: flex;
+		margin-bottom: 50px;
+
+		& > div {
+			outline: 1px solid #eee;
+
+			&:hover {
+				box-shadow: 0 5px 20px rgba(61, 61, 61, 0.1);
+			}
+		}
 
 		& .image {
-			width: 625px;
+			width: 525px;
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -79,8 +98,7 @@ export const Product = styled(ProductContainer)`
 
 		& .description {
 			width: 427.5px;
-			padding: 30px 20px 20px;
-			font-weight: 14px;
+			padding: 30px;
 			color: #808080;
 
 			& h4 {
@@ -94,7 +112,7 @@ export const Product = styled(ProductContainer)`
 			flex-direction: column;
 			justify-content: space-between;
 			width: 427.5px;
-			padding: 30px 20px 20px;
+			padding: 30px;
 
 			& .green {
 				color: #43c16d;

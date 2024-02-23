@@ -1,4 +1,6 @@
+const mongoose = require('mongoose');
 const mapCategory = require('./mapCategory');
+const mapComment = require('./mapComment');
 
 module.exports = (product) => {
 	return {
@@ -8,6 +10,8 @@ module.exports = (product) => {
 		quantity: product.quantity,
 		imageUrl: product.imageUrl,
 		categoryId: mapCategory(product.categoryId),
-		comments: product.comments,
+		comments: product.comments.map((comment) =>
+			mongoose.isObjectIdOrHexString(comment) ? comment : mapComment(comment),
+		),
 	};
 };

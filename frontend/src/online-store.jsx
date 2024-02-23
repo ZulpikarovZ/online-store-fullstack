@@ -54,7 +54,7 @@ export const OnlineStore = () => {
 						element={<div>Изменение товара</div>}
 					/>
 					<Route path="/basket/:id" element={<div>Корзина</div>} />
-					<Route path="/favorites/:id" element={<div>Избранное</div>} />
+					<Route path="/favorites" element={<div>В разработке...</div>} />
 					<Route path="*" element={<div>Страница не найдена</div>} />
 				</Routes>
 			</Page>
