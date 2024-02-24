@@ -4,7 +4,15 @@ import { Footer, Header } from './components';
 import { useDispatch } from 'react-redux';
 import { useLayoutEffect } from 'react';
 import { setUser } from './redux/actions';
-import { Products, Authorization, Profile, Registration, Main, Product } from './pages';
+import {
+	Products,
+	Authorization,
+	Profile,
+	Registration,
+	Main,
+	Product,
+	AboutUs,
+} from './pages';
 
 const AppContainer = styled.div`
 	display: flex;
@@ -46,6 +54,7 @@ export const OnlineStore = () => {
 					<Route path="/login" element={<Authorization />} />
 					<Route path="/register" element={<Registration />} />
 					<Route path="/profile" element={<Profile />} />
+					<Route path="/about-us" element={<AboutUs />} />
 					<Route path="/products" element={<Products />} />
 					<Route path="/product" element={<div>Добавление товара</div>} />
 					<Route path="/product/:id" element={<Product />} />

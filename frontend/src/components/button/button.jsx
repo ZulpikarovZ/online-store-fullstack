@@ -10,7 +10,7 @@ const ButtonContainer = ({ children, className, width, ...props }) => {
 
 export const Button = styled(ButtonContainer)`
 	width: ${({ width = '100%' }) => width};
-	background-color: #f6a701;
+	background-color: ${({ disabled }) => (disabled ? '#ccc' : '#f6a701')};
 	font-size: 14px;
 	height: 46px;
 	cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
@@ -20,6 +20,7 @@ export const Button = styled(ButtonContainer)`
 	transition: all 0.2s ease-out;
 
 	&:hover {
-		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+		box-shadow: ${({ disabled }) =>
+			disabled ? 'none' : '0 4px 10px rgba(0, 0, 0, 0.3);'};
 	}
 `;

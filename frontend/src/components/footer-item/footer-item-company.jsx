@@ -7,7 +7,7 @@ const FooterItemCompanyContainer = ({ className }) => {
 			<h3>КОМПАНИЯ</h3>
 			<ul>
 				<li>
-					<Link to="#">О компании</Link>
+					<Link to="/about-us">О компании</Link>
 				</li>
 				<li>
 					<Link to="#">Оплата</Link>

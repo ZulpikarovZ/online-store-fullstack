@@ -1,17 +1,31 @@
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { selectProducts } from '../../redux/selectors';
-import { getProductsAsync } from '../../redux/actions';
+import { setProducts } from '../../redux/actions';
 import { useEffect } from 'react';
 import { ProductsListItem } from '../products-list-item/products-list-item';
+import { request } from '../../utils';
+import { PAGINATION_LIMIT } from '../../constants';
 
-const ProductsListContainer = ({ className }) => {
+const ProductsListContainer = ({
+	className,
+	shouldSearch,
+	page,
+	searchPhrase,
+	setLastPage,
+}) => {
 	const dispatch = useDispatch();
 	const products = useSelector(selectProducts);
 
 	useEffect(() => {
-		dispatch(getProductsAsync());
-	}, [dispatch]);
+		request(
+			`/productss?search=${searchPhrase}&limit=${PAGINATION_LIMIT}&page=${page}`,
+		).then(({ data: { products, lastPage } }) => {
+			dispatch(setProducts(products));
+			setLastPage(lastPage);
+		});
+		// eslint-disable-next-line
+	}, [dispatch, shouldSearch, page]);
 
 	return (
 		<ul className={className}>

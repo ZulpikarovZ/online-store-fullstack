@@ -23,3 +23,4 @@ export * from './products-list/products-list';
 export * from './products-list-item/products-list-item';
 export * from './comments/comments';
 export * from './comment/comment';
+export * from './pagination/pagination';

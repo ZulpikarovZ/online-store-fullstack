@@ -20,6 +20,22 @@ const getProducts = async () => {
 	return products;
 };
 
+//get products with search and pagination
+const searchProducts = async (search = '', limit = 10, page = 1) => {
+	const [products, count] = await Promise.all([
+		Product.find({ name: { $regex: search, $options: 'i' } })
+			.limit(limit)
+			.skip((page - 1) * limit),
+		// .sort({ price: -1 }),
+		Product.countDocuments({ name: { $regex: search, $options: 'i' } }),
+	]);
+
+	return {
+		products,
+		lastPage: Math.ceil(count / limit),
+	};
+};
+
 //get one product
 const getProduct = async (productId) => {
 	const product = await Product.findById(productId).populate('categoryId');
@@ -67,4 +83,5 @@ module.exports = {
 	deleteProduct,
 	addComment,
 	deleteComment,
+	searchProducts,
 };

@@ -35,8 +35,4 @@ export const Products = styled(ProductsContainer)`
 		width: 25%;
 		margin-right: 40px;
 	}
-
-	.right-col {
-		// width: calc(75% - 40px);
-	}
 `;

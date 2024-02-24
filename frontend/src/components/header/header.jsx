@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Logo } from '../logo/logo';
-import { Search } from '../search/search';
 import { UserPanel } from '../user-panel/user-panel';
 
 const HeaderContainer = ({ className }) => {
@@ -8,7 +7,7 @@ const HeaderContainer = ({ className }) => {
 		<header className={className}>
 			<div className="wrap">
 				<Logo />
-				<Search />
+				<h2>Здесь могла быть ваша реклама.</h2>
 				<UserPanel />
 			</div>
 		</header>
@@ -17,6 +16,10 @@ const HeaderContainer = ({ className }) => {
 
 export const Header = styled(HeaderContainer)`
 	background-color: #e3e3e3;
+
+	& h2 {
+		color: #f6a701;
+	}
 
 	& .wrap {
 		display: flex;

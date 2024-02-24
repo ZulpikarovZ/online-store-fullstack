@@ -7,6 +7,7 @@ const {
 	getProduct,
 	addComment,
 	deleteComment,
+	searchProducts,
 } = require('../controllers/product');
 const mapProduct = require('../helpers/mapProduct');
 const mapComment = require('../helpers/mapComment');
@@ -35,6 +36,20 @@ router.get('/products', async (req, res) => {
 			error: null,
 			data: products.map(mapProduct),
 		});
+	} catch (e) {
+		res.send({ error: e.message || 'Unknown error' });
+	}
+});
+
+router.get('/productss', async (req, res) => {
+	try {
+		const { products, lastPage } = await searchProducts(
+			req.query.search,
+			req.query.limit,
+			req.query.page,
+		);
+
+		res.send({ error: null, data: { products: products.map(mapProduct), lastPage } });
 	} catch (e) {
 		res.send({ error: e.message || 'Unknown error' });
 	}

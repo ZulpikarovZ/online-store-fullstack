@@ -13,7 +13,7 @@ const FooterItemProfileContainer = ({ className }) => {
 					<Link to="/basket">Мои заказы</Link>
 				</li>
 				<li>
-					<Link to="#">Мои подписки</Link>
+					<Link to="/favorites">Мое избранное</Link>
 				</li>
 			</ul>
 		</div>
