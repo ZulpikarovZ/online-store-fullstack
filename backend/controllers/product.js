@@ -21,13 +21,32 @@ const getProducts = async () => {
 };
 
 //get products with search and pagination
-const searchProducts = async (search = '', limit = 10, page = 1) => {
+const searchProducts = async (
+	search = '',
+	limit = 10,
+	page = 1,
+	category = '',
+	sort = '',
+) => {
+	const dbQuery = { name: { $regex: search, $options: 'i' } };
+
+	if (category) {
+		dbQuery.categoryId = category;
+	}
+
 	const [products, count] = await Promise.all([
-		Product.find({ name: { $regex: search, $options: 'i' } })
+		Product.find(dbQuery)
 			.limit(limit)
-			.skip((page - 1) * limit),
-		// .sort({ price: -1 }),
-		Product.countDocuments({ name: { $regex: search, $options: 'i' } }),
+			.skip((page - 1) * limit)
+			.populate('categoryId')
+			.sort(
+				sort === ''
+					? null
+					: sort === 'Сначала дешовые'
+						? { price: 1 }
+						: { price: -1 },
+			),
+		Product.countDocuments(dbQuery),
 	]);
 
 	return {

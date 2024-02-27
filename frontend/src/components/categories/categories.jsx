@@ -1,10 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { getCategoriesAsync } from '../../redux/actions';
 import { selectCategories } from '../../redux/selectors';
 
-const CategoriesContainer = ({ className }) => {
+const CategoriesContainer = ({ className, setSelectedCategory }) => {
+	const [activeCategory, setActiveCategory] = useState('all');
 	const dispatch = useDispatch();
 	const categories = useSelector(selectCategories);
 
@@ -12,12 +13,34 @@ const CategoriesContainer = ({ className }) => {
 		dispatch(getCategoriesAsync());
 	}, [dispatch]);
 
+	const onSetCategory = (id, index) => {
+		setActiveCategory(index);
+		setSelectedCategory(id);
+	};
+
+	const onResetCategory = () => {
+		setActiveCategory('all');
+		setSelectedCategory('');
+	};
+
 	return (
 		<div className={className}>
 			<h2>Категории:</h2>
 			<ul>
-				{categories.map((category) => (
-					<li key={category.id}>{category.name}</li>
+				<li
+					className={activeCategory === 'all' ? 'active' : ''}
+					onClick={() => onResetCategory('all', '')}
+				>
+					Все товары
+				</li>
+				{categories.map((category, index) => (
+					<li
+						key={category.id}
+						className={activeCategory === index ? 'active' : ''}
+						onClick={() => onSetCategory(category.id, index)}
+					>
+						{category.name}
+					</li>
 				))}
 			</ul>
 		</div>
@@ -53,6 +76,11 @@ export const Categories = styled(CategoriesContainer)`
 			&:hover {
 				background: #f7f7f7;
 			}
+		}
+
+		& .active {
+			color: #f6a701;
+			font-weight: 500;
 		}
 	}
 `;

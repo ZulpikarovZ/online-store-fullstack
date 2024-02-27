@@ -8,6 +8,8 @@ const MainContainer = ({ className }) => {
 	const [lastPage, setLastPage] = useState(1);
 	const [searchPhrase, setSearchPhrase] = useState('');
 	const [shouldSearch, setShouldSearch] = useState(false);
+	const [selectedCategory, setSelectedCategory] = useState('');
+	const [sort, setSort] = useState('');
 
 	const startDelayedSearch = useMemo(() => debounce(setShouldSearch, 500), []);
 
@@ -18,14 +20,21 @@ const MainContainer = ({ className }) => {
 
 	return (
 		<div className={className}>
-			<Search searchPhrase={searchPhrase} onSearch={onSearch} />
+			<Search
+				searchPhrase={searchPhrase}
+				onSearch={onSearch}
+				sort={sort}
+				setSort={setSort}
+			/>
 			<div className="content">
-				<Categories />
+				<Categories setSelectedCategory={setSelectedCategory} />
 				<ProductsList
 					shouldSearch={shouldSearch}
 					page={page}
 					searchPhrase={searchPhrase}
 					setLastPage={setLastPage}
+					selectedCategory={selectedCategory}
+					sort={sort}
 				/>
 			</div>
 			<Pagination page={page} setPage={setPage} lastPage={lastPage} />

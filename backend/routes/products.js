@@ -47,9 +47,14 @@ router.get('/productss', async (req, res) => {
 			req.query.search,
 			req.query.limit,
 			req.query.page,
+			req.query.category,
+			req.query.sort,
 		);
 
-		res.send({ error: null, data: { products: products.map(mapProduct), lastPage } });
+		res.send({
+			error: null,
+			data: { serverProducts: products.map(mapProduct), lastPage },
+		});
 	} catch (e) {
 		res.send({ error: e.message || 'Unknown error' });
 	}

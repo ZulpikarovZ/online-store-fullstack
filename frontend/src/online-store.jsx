@@ -12,6 +12,7 @@ import {
 	Main,
 	Product,
 	AboutUs,
+	Page404,
 } from './pages';
 
 const AppContainer = styled.div`
@@ -64,7 +65,7 @@ export const OnlineStore = () => {
 					/>
 					<Route path="/basket/:id" element={<div>Корзина</div>} />
 					<Route path="/favorites" element={<div>В разработке...</div>} />
-					<Route path="*" element={<div>Страница не найдена</div>} />
+					<Route path="*" element={<Page404 />} />
 				</Routes>
 			</Page>
 			<Footer />
