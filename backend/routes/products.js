@@ -12,10 +12,12 @@ const {
 const mapProduct = require('../helpers/mapProduct');
 const mapComment = require('../helpers/mapComment');
 const authenticated = require('../middlewares/authenticated');
+const hasRole = require('../middlewares/hasRole');
+const ROLE = require('../constants/roles');
 
 const router = express.Router({ mergeParams: true });
 
-router.post('/products', async (req, res) => {
+router.post('/products', authenticated, hasRole([ROLE.ADMIN]), async (req, res) => {
 	try {
 		const newProduct = await addProduct(req.body);
 
@@ -28,7 +30,7 @@ router.post('/products', async (req, res) => {
 	}
 });
 
-router.get('/products', async (req, res) => {
+router.get('/products', authenticated, hasRole([ROLE.ADMIN]), async (req, res) => {
 	try {
 		const products = await getProducts();
 
@@ -73,7 +75,7 @@ router.get('/products/:id', async (req, res) => {
 	}
 });
 
-router.patch('/products/:id', async (req, res) => {
+router.patch('/products/:id', authenticated, hasRole([ROLE.ADMIN]), async (req, res) => {
 	try {
 		const updatedProduct = await updateProduct(req.params.id, req.body);
 
@@ -86,7 +88,7 @@ router.patch('/products/:id', async (req, res) => {
 	}
 });
 
-router.delete('/products/:id', async (req, res) => {
+router.delete('/products/:id', authenticated, hasRole([ROLE.ADMIN]), async (req, res) => {
 	try {
 		await deleteProduct(req.params.id);
 
@@ -109,14 +111,19 @@ router.post('/products/:id/comments', authenticated, async (req, res) => {
 	}
 });
 
-router.delete('/products/:productId/comments/:commentId', async (req, res) => {
-	try {
-		await deleteComment(req.params.productId, req.params.commentId);
+router.delete(
+	'/products/:productId/comments/:commentId',
+	authenticated,
+	hasRole([ROLE.ADMIN]),
+	async (req, res) => {
+		try {
+			await deleteComment(req.params.productId, req.params.commentId);
 
-		res.send({ error: null });
-	} catch (e) {
-		res.send({ error: e.message || 'Unknown error' });
-	}
-});
+			res.send({ error: null });
+		} catch (e) {
+			res.send({ error: e.message || 'Unknown error' });
+		}
+	},
+);
 
 module.exports = router;

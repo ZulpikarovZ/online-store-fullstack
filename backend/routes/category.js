@@ -5,10 +5,13 @@ const {
 	deleteCategories,
 } = require('../controllers/category');
 const mapCategory = require('../helpers/mapCategory');
+const authenticated = require('../middlewares/authenticated');
+const hasRole = require('../middlewares/hasRole');
+const ROLE = require('../middlewares/hasRole');
 
 const router = express.Router({ mergeParams: true });
 
-router.post('/categories', async (req, res) => {
+router.post('/categories', authenticated, hasRole([ROLE.ADMIN]), async (req, res) => {
 	try {
 		const category = await addCategory(req.body.category);
 
@@ -34,7 +37,7 @@ router.get('/categories', async (req, res) => {
 	}
 });
 
-router.delete('/categories', async (req, res) => {
+router.delete('/categories', authenticated, hasRole([ROLE.ADMIN]), async (req, res) => {
 	try {
 		await deleteCategories(req.body.category);
 

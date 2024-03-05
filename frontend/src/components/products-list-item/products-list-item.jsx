@@ -12,6 +12,11 @@ const ProductsListItemContainer = ({ className, product }) => {
 	const quantityColor = product.quantity > 0 ? 'green' : 'red';
 
 	const onAddToBasket = () => {
+		if (!user.login) {
+			alert('Сначала нужно зарегестрироваться.');
+			return;
+		}
+
 		dispatch(addProductToBasketAsync(user.id, product.id));
 		alert('Товар добавлен в корзину.');
 	};
