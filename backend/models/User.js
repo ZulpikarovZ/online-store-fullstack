@@ -21,6 +21,12 @@ const UserScheme = mongoose.Schema(
 			type: Number,
 			default: roles.USER,
 		},
+		basket: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'Product',
+			},
+		],
 	},
 	{ timestamps: true },
 );

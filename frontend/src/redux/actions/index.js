@@ -19,3 +19,8 @@ export * from './remove-product';
 export * from './get-product-async';
 export * from './add-comment-async';
 export * from './remove-comment-async';
+export * from './add-product-to-basket-async';
+export * from './get-user-basket-async';
+export * from './remove-product-from-basket-async';
+export * from './remove-product-from-basket';
+export * from './set-basket-product-quantity';

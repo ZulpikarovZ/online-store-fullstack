@@ -43,7 +43,7 @@ const UserPanelContainer = ({ className }) => {
 				<Icon id="fa-heart-o" />
 				<span>Избранное</span>
 			</Link>
-			<Link to="/basket" className="icon">
+			<Link to={`/basket/${user.id}`} className="icon">
 				<Icon id="fa-shopping-cart" />
 				<span>Корзина</span>
 			</Link>

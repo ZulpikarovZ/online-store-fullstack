@@ -13,6 +13,7 @@ import {
 	Product,
 	AboutUs,
 	Page404,
+	Basket,
 } from './pages';
 
 const AppContainer = styled.div`
@@ -63,7 +64,7 @@ export const OnlineStore = () => {
 						path="/product/:id/edit"
 						element={<div>Изменение товара</div>}
 					/>
-					<Route path="/basket/:id" element={<div>Корзина</div>} />
+					<Route path="/basket/:id" element={<Basket />} />
 					<Route path="/favorites" element={<div>В разработке...</div>} />
 					<Route path="*" element={<Page404 />} />
 				</Routes>

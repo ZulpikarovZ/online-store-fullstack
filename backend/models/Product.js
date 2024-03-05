@@ -33,6 +33,10 @@ const ProductScheme = mongoose.Schema(
 				ref: 'Comment',
 			},
 		],
+		quantityInBasket: {
+			type: Number,
+			default: 1,
+		},
 	},
 	{ timestamps: true },
 );

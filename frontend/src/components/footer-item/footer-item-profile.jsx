@@ -1,7 +1,11 @@
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { selectUserId } from '../../redux/selectors';
 
 const FooterItemProfileContainer = ({ className }) => {
+	const userId = useSelector(selectUserId);
+
 	return (
 		<div className={className}>
 			<h3>ЛИЧНЫЙ КАБИНЕТ</h3>
@@ -10,7 +14,7 @@ const FooterItemProfileContainer = ({ className }) => {
 					<Link to="/profile">Мой профиль</Link>
 				</li>
 				<li>
-					<Link to="/basket">Мои заказы</Link>
+					<Link to={`/basket/${userId}`}>Мои заказы</Link>
 				</li>
 				<li>
 					<Link to="/favorites">Мое избранное</Link>

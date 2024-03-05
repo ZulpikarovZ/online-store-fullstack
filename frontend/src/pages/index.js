@@ -6,3 +6,4 @@ export * from './product/product';
 export * from './main/main';
 export * from './about-us/about-us';
 export * from './page-404/page-404';
+export * from './basket/basket';

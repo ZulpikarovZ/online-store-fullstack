@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import { getProductAsync } from '../../redux/actions';
+import { addProductToBasketAsync, getProductAsync } from '../../redux/actions';
 import { Button, Comments, Icon } from '../../components';
+import { selectUser } from '../../redux/selectors';
 
 const ProductContainer = ({ className }) => {
 	const [product, setProduct] = useState({});
+	const user = useSelector(selectUser);
 	const params = useParams();
 	const dispatch = useDispatch();
 
@@ -15,6 +17,11 @@ const ProductContainer = ({ className }) => {
 	useEffect(() => {
 		dispatch(getProductAsync(params.id)).then((res) => setProduct(res?.data));
 	}, [dispatch, params.id]);
+
+	const onAddToBasket = () => {
+		dispatch(addProductToBasketAsync(user.id, params.id));
+		alert('Товар добавлен в корзину.');
+	};
 
 	return (
 		<div className={className}>
@@ -57,7 +64,9 @@ const ProductContainer = ({ className }) => {
 							<a href="tel:+79657777777">+7(965)-777-77-777</a>
 						</span>
 					</span>
-					<Button disabled={quantityColor === 'red'}>В корзину</Button>
+					<Button disabled={quantityColor === 'red'} onClick={onAddToBasket}>
+						В корзину
+					</Button>
 				</div>
 			</div>
 			<Comments product={product} setProduct={setProduct} />

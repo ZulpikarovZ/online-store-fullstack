@@ -13,5 +13,6 @@ module.exports = (product) => {
 		comments: product.comments.map((comment) =>
 			mongoose.isObjectIdOrHexString(comment) ? comment : mapComment(comment),
 		),
+		quantityInBasket: product.quantityInBasket,
 	};
 };

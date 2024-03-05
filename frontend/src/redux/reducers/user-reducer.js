@@ -1,4 +1,9 @@
-import { LOGOUT, SET_USER } from '../action-types/action-types';
+import {
+	LOGOUT,
+	REMOVE_PRODUCT_FROM_BASKET,
+	SET_BASKET_PRODUCT_QUANTITY,
+	SET_USER,
+} from '../action-types/action-types';
 import { ROLE } from '../../constants';
 
 const userInitialState = {
@@ -14,6 +19,23 @@ export const userReducer = (state = userInitialState, action) => {
 			return {
 				...state,
 				...action.payload,
+			};
+
+		case REMOVE_PRODUCT_FROM_BASKET:
+			return {
+				...state,
+				basket: [...state.basket].filter((el) => el.id !== action.payload),
+			};
+
+		case SET_BASKET_PRODUCT_QUANTITY:
+			return {
+				...state,
+				basket: [...state.basket].map((el) => {
+					if (el.id === action?.payload?.productId) {
+						return { ...el, quantityInBasket: action?.payload?.quantity };
+					}
+					return el;
+				}),
 			};
 
 		case LOGOUT:

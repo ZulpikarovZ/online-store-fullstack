@@ -2,9 +2,19 @@ import styled from 'styled-components';
 import { Button } from '../button/button';
 import { Link } from 'react-router-dom';
 import { Icon } from '../icon/icon';
+import { useDispatch, useSelector } from 'react-redux';
+import { addProductToBasketAsync } from '../../redux/actions';
+import { selectUser } from '../../redux/selectors';
 
 const ProductsListItemContainer = ({ className, product }) => {
+	const dispatch = useDispatch();
+	const user = useSelector(selectUser);
 	const quantityColor = product.quantity > 0 ? 'green' : 'red';
+
+	const onAddToBasket = () => {
+		dispatch(addProductToBasketAsync(user.id, product.id));
+		alert('Товар добавлен в корзину.');
+	};
 
 	return (
 		<li className={className}>
@@ -25,7 +35,9 @@ const ProductsListItemContainer = ({ className, product }) => {
 				</span>
 			</span>
 			<div className="price">{product.price}₽</div>
-			<Button disabled={quantityColor === 'red'}>В корзину</Button>
+			<Button disabled={quantityColor === 'red'} onClick={onAddToBasket}>
+				В корзину
+			</Button>
 			<Icon id="fa-heart-o" className="like" size="18px" />
 		</li>
 	);
@@ -90,10 +102,6 @@ export const ProductsListItem = styled(ProductsListItemContainer)`
 		font-size: 24px;
 		font-weight: 500;
 		margin-bottom: 20px;
-	}
-
-	& Button:hover {
-		padding-right: 12px;
 	}
 
 	& .like {

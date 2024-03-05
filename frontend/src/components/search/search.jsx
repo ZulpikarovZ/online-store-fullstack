@@ -16,7 +16,7 @@ const SearchContainer = ({ className, searchPhrase, onSearch, sort, setSort }) =
 		<div className={className}>
 			<Input
 				width="700px"
-				placeholder="Найти товаров..."
+				placeholder="Найти товар..."
 				value={searchPhrase}
 				onChange={onSearch}
 			/>
