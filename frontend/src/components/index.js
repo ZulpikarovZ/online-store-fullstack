@@ -27,3 +27,5 @@ export * from './pagination/pagination';
 export * from './order/order';
 export * from './delivery/delivery';
 export * from './basket-item/basket-item';
+export * from './private-content/private-content';
+export * from './error/error';

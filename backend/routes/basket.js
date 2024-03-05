@@ -24,7 +24,7 @@ router.post('/basket/:userId', authenticated, async (req, res) => {
 	}
 });
 
-router.get('/basket/:userId', async (req, res) => {
+router.get('/basket/:userId', authenticated, async (req, res) => {
 	try {
 		const user = await getUserBasket(req.params.userId);
 

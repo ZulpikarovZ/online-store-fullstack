@@ -1,13 +1,17 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Icon } from '../icon/icon';
 import { addCommentAsync } from '../../redux/actions';
 import { Comment } from '../comment/comment';
+import { ROLE } from '../../constants';
+import { selectUserRoleId } from '../../redux/selectors';
 
 const CommentsContainer = ({ className, product, setProduct }) => {
 	const [newComment, setNewComment] = useState('');
 	const dispatch = useDispatch();
+	const userRole = useSelector(selectUserRoleId);
+	const isUserOrAdmin = [ROLE.USER, ROLE.ADMIN].includes(userRole);
 
 	const onNewCommentAdd = (productId, content) => {
 		if (!newComment.trim()) {
@@ -24,21 +28,23 @@ const CommentsContainer = ({ className, product, setProduct }) => {
 	return (
 		<div className={className}>
 			<h2>Отзывы</h2>
-			<div className="new-comment">
-				<textarea
-					value={newComment}
-					type="textarea"
-					placeholder="Комментарий..."
-					onChange={({ target }) => setNewComment(target.value)}
-				></textarea>
-				<Icon
-					id="fa-paper-plane-o"
-					margin="0 0 0 10px"
-					size="18px"
-					onClick={() => onNewCommentAdd(product.id, newComment)}
-					style={{ color: '#f6a701' }}
-				/>
-			</div>
+			{isUserOrAdmin && (
+				<div className="new-comment">
+					<textarea
+						value={newComment}
+						type="textarea"
+						placeholder="Комментарий..."
+						onChange={({ target }) => setNewComment(target.value)}
+					></textarea>
+					<Icon
+						id="fa-paper-plane-o"
+						margin="0 0 0 10px"
+						size="18px"
+						onClick={() => onNewCommentAdd(product.id, newComment)}
+						style={{ color: '#f6a701' }}
+					/>
+				</div>
+			)}
 			<div className="comments">
 				{product.comments?.map((comment) => (
 					<Comment
@@ -72,5 +78,9 @@ export const Comments = styled(CommentsContainer)`
 			outline: 1px solid #f6a701;
 			border: 1px solid #f6a701;
 		}
+	}
+
+	& .comments {
+		width: 578px;
 	}
 `;

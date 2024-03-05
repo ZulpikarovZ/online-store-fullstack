@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import { addProductToBasketAsync, getProductAsync } from '../../redux/actions';
-import { Button, Comments, Icon } from '../../components';
+import { Button, Comments, Error, Icon } from '../../components';
 import { selectUser } from '../../redux/selectors';
+import { ERROR } from '../../constants';
 
 const ProductContainer = ({ className }) => {
 	const [product, setProduct] = useState({});
+	const [error, setError] = useState(null);
 	const user = useSelector(selectUser);
 	const params = useParams();
 	const dispatch = useDispatch();
@@ -15,10 +17,25 @@ const ProductContainer = ({ className }) => {
 	const quantityColor = product.quantity > 0 ? 'green' : 'red';
 
 	useEffect(() => {
-		dispatch(getProductAsync(params.id)).then((res) => setProduct(res?.data));
+		dispatch(getProductAsync(params.id)).then((res) => {
+			if (res.error) {
+				setError(res.error);
+				return;
+			}
+			setProduct(res?.data);
+		});
 	}, [dispatch, params.id]);
 
+	if (error) {
+		return <Error error={ERROR.PRODUCT_NOT_FOUND} />;
+	}
+
 	const onAddToBasket = () => {
+		if (!user.login) {
+			alert('Сначала нужно зарегестрироваться.');
+			return;
+		}
+
 		dispatch(addProductToBasketAsync(user.id, params.id));
 		alert('Товар добавлен в корзину.');
 	};

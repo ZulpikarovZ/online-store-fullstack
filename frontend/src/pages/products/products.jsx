@@ -1,20 +1,28 @@
 import styled from 'styled-components';
-import { AddCategoryForm, AddProductForm, ProductsTable } from '../../components';
+import {
+	AddCategoryForm,
+	AddProductForm,
+	PrivateContent,
+	ProductsTable,
+} from '../../components';
+import { ROLE } from '../../constants';
 
 const ProductsContainer = ({ className }) => {
 	return (
-		<div className={className}>
-			<h2>Admin panel</h2>
-			<div className="xxx">
-				<div className="left-col">
-					<AddCategoryForm />
-					<AddProductForm />
-				</div>
-				<div className="right-col">
-					<ProductsTable />
+		<PrivateContent access={[ROLE.ADMIN]}>
+			<div className={className}>
+				<h2>Admin panel</h2>
+				<div className="xxx">
+					<div className="left-col">
+						<AddCategoryForm />
+						<AddProductForm />
+					</div>
+					<div className="right-col">
+						<ProductsTable />
+					</div>
 				</div>
 			</div>
-		</div>
+		</PrivateContent>
 	);
 };
 

@@ -7,7 +7,7 @@ const {
 const mapCategory = require('../helpers/mapCategory');
 const authenticated = require('../middlewares/authenticated');
 const hasRole = require('../middlewares/hasRole');
-const ROLE = require('../middlewares/hasRole');
+const ROLE = require('../constants/roles');
 
 const router = express.Router({ mergeParams: true });
 

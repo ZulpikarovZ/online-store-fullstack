@@ -1,10 +1,14 @@
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { removeCommentAsync } from '../../redux/actions';
 import { Icon } from '../';
+import { selectUserRoleId } from '../../redux/selectors';
+import { ROLE } from '../../constants';
 
 const CommentCotainer = ({ className, comment, product, setProduct }) => {
 	const dispatch = useDispatch();
+	const userRole = useSelector(selectUserRoleId);
+	const isAdmin = userRole === ROLE.ADMIN;
 
 	const onCommentRemove = (commentId) => {
 		dispatch(removeCommentAsync(product.id, commentId)).then(() =>
@@ -30,13 +34,15 @@ const CommentCotainer = ({ className, comment, product, setProduct }) => {
 				</div>
 				<div className="text">{comment.content}</div>
 			</div>
-			<Icon
-				id="fa-trash-o"
-				size="18px"
-				margin="0 0 0 14px"
-				onClick={() => onCommentRemove(comment.id)}
-				style={{ color: '#f6a701' }}
-			/>
+			{isAdmin && (
+				<Icon
+					id="fa-trash-o"
+					size="18px"
+					margin="0 0 0 14px"
+					onClick={() => onCommentRemove(comment.id)}
+					style={{ color: '#f6a701' }}
+				/>
+			)}
 		</div>
 	);
 };

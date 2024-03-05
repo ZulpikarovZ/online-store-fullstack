@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Icon } from '../icon/icon';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../redux/selectors';
 import { ROLE } from '../../constants';
@@ -9,10 +9,12 @@ import { logout } from '../../redux/actions';
 const UserPanelContainer = ({ className }) => {
 	const user = useSelector(selectUser);
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 
 	const onLogout = () => {
 		dispatch(logout());
 		sessionStorage.removeItem('userData');
+		navigate('/');
 	};
 
 	return (
@@ -43,7 +45,10 @@ const UserPanelContainer = ({ className }) => {
 				<Icon id="fa-heart-o" />
 				<span>Избранное</span>
 			</Link>
-			<Link to={`/basket/${user.id}`} className="icon">
+			<Link
+				to={user.roleId === 2 ? `/login` : `/basket/${user.id}`}
+				className="icon"
+			>
 				<Icon id="fa-shopping-cart" />
 				<span>Корзина</span>
 			</Link>

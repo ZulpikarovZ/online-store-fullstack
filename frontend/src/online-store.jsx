@@ -58,12 +58,7 @@ export const OnlineStore = () => {
 					<Route path="/profile" element={<Profile />} />
 					<Route path="/about-us" element={<AboutUs />} />
 					<Route path="/products" element={<Products />} />
-					<Route path="/product" element={<div>Добавление товара</div>} />
 					<Route path="/product/:id" element={<Product />} />
-					<Route
-						path="/product/:id/edit"
-						element={<div>Изменение товара</div>}
-					/>
 					<Route path="/basket/:id" element={<Basket />} />
 					<Route path="/favorites" element={<div>В разработке...</div>} />
 					<Route path="*" element={<Page404 />} />
